@@ -40,10 +40,18 @@ import yaml  # 配置文件
 # 基础爬虫客户端和哔哩哔哩API端点
 from crawlers.base_crawler import BaseCrawler
 from crawlers.bilibili.web.endpoints import BilibiliAPIEndpoints
+
 # 哔哩哔哩工具类
 from crawlers.bilibili.web.utils import EndpointGenerator, bv2av, ResponseAnalyzer
+
 # 数据请求模型
-from crawlers.bilibili.web.models import UserPostVideos, UserProfile, ComPopular, UserDynamic, PlayUrl
+from crawlers.bilibili.web.models import (
+    UserPostVideos,
+    UserProfile,
+    ComPopular,
+    UserDynamic,
+    PlayUrl,
+)
 
 # 配置文件路径
 path = os.path.abspath(os.path.dirname(__file__))
@@ -54,10 +62,9 @@ with open(f"{path}/config.yaml", "r", encoding="utf-8") as f:
 
 
 class BilibiliWebCrawler:
-
     # 从配置文件读取哔哩哔哩请求头
     async def get_bilibili_headers(self):
-        bili_config = config['TokenManager']['bilibili']
+        bili_config = config["TokenManager"]["bilibili"]
         kwargs = {
             "headers": {
                 "accept-language": bili_config["headers"]["accept-language"],
@@ -66,7 +73,10 @@ class BilibiliWebCrawler:
                 "user-agent": bili_config["headers"]["user-agent"],
                 "cookie": bili_config["headers"]["cookie"],
             },
-            "proxies": {"http://": bili_config["proxies"]["http"], "https://": bili_config["proxies"]["https"]},
+            "proxies": {
+                "http://": bili_config["proxies"]["http"],
+                "https://": bili_config["proxies"]["https"],
+            },
         }
         return kwargs
 
@@ -77,7 +87,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.POST_DETAIL}?bvid={bv_id}"
@@ -90,7 +100,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 通过模型生成基本请求参数
             params = PlayUrl(bvid=bv_id, cid=cid, qn=qn)
@@ -111,7 +121,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 通过模型生成基本请求参数
             params = UserPostVideos(mid=uid, pn=pn)
@@ -127,7 +137,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.COLLECT_FOLDERS}?up_mid={uid}"
@@ -147,7 +157,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         # 发送请求，获取请求响应结果
         async with base_crawler as crawler:
             endpoint = f"{BilibiliAPIEndpoints.COLLECT_VIDEOS}?media_id={folder_id}&pn={pn}&ps=20&keyword=&order=mtime&type=0&tid=0&platform=web"
@@ -159,7 +169,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 通过模型生成基本请求参数
             params = UserProfile(mid=uid)
@@ -175,7 +185,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 通过模型生成基本请求参数
             params = ComPopular(pn=pn)
@@ -193,7 +203,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.VIDEO_COMMENTS}?type=1&oid={bv_id}&sort={sort}&nohot=0&ps=20&pn={pn}"
@@ -212,7 +222,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.COMMENT_REPLY}?type=1&oid={bv_id}&root={rpid}&&ps=20&pn={pn}"
@@ -225,7 +235,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 通过模型生成基本请求参数
             params = UserDynamic(host_mid=uid, offset=offset)
@@ -242,7 +252,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"https://comment.bilibili.com/{cid}.xml"
@@ -255,7 +265,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.LIVEROOM_DETAIL}?room_id={room_id}"
@@ -268,7 +278,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.LIVE_VIDEOS}?cid={room_id}&quality=4"
@@ -281,7 +291,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.LIVE_STREAMER}?platform=web&parent_area_id={area_id}&page={pn}"
@@ -301,7 +311,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = f"{BilibiliAPIEndpoints.VIDEO_PARTS}?bvid={bv_id}"
@@ -314,7 +324,7 @@ class BilibiliWebCrawler:
         # 获取请求头信息
         kwargs = await self.get_bilibili_headers()
         # 创建基础爬虫对象
-        base_crawler = BaseCrawler(proxies=kwargs["proxies"], crawler_headers=kwargs["headers"])
+        base_crawler = BaseCrawler(crawler_headers=kwargs["headers"])
         async with base_crawler as crawler:
             # 创建请求endpoint
             endpoint = BilibiliAPIEndpoints.LIVE_AREAS
@@ -401,7 +411,7 @@ class BilibiliWebCrawler:
 
         # 获取指定分区正在直播的主播
         pn = 1
-        area_id = '9'
+        area_id = "9"
         result = await self.fetch_live_streamers(area_id=area_id, pn=pn)
         print(result)
 
@@ -421,7 +431,7 @@ class BilibiliWebCrawler:
         # print(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 初始化
     BilibiliWebCrawler = BilibiliWebCrawler()
 
