@@ -41,7 +41,7 @@ async def fetch_one_video(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -87,7 +87,7 @@ async def fetch_user_profile(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -140,7 +140,7 @@ async def fetch_user_post(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -196,7 +196,7 @@ async def fetch_user_like(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -254,7 +254,7 @@ async def fetch_user_collect(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -303,7 +303,7 @@ async def fetch_user_play_list(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -352,7 +352,7 @@ async def fetch_user_mix(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -404,7 +404,7 @@ async def fetch_post_comment(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -461,7 +461,7 @@ async def fetch_post_comment_reply(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -514,7 +514,7 @@ async def fetch_user_fans(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -567,7 +567,7 @@ async def fetch_user_follow(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -602,7 +602,7 @@ async def generate_real_msToken(request: Request):
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -642,7 +642,7 @@ async def generate_ttwid(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -690,7 +690,7 @@ async def generate_xbogus(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -732,7 +732,7 @@ async def get_sec_user_id(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -774,7 +774,7 @@ async def get_all_sec_user_id(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -816,7 +816,7 @@ async def get_aweme_id(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -858,7 +858,7 @@ async def get_all_aweme_id(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -900,7 +900,7 @@ async def get_unique_id(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,
@@ -942,7 +942,7 @@ async def get_all_unique_id(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,

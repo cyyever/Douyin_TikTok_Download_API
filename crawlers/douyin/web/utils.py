@@ -37,10 +37,9 @@ import os
 import random
 import re
 import time
-import urllib
 from pathlib import Path
 from typing import Union
-from urllib.parse import urlencode, quote
+from urllib.parse import quote
 
 # import execjs
 import httpx
@@ -51,7 +50,6 @@ from crawlers.douyin.web.xbogus import XBogus as XB
 from crawlers.douyin.web.abogus import ABogus as AB
 
 from crawlers.utils.api_exceptions import (
-    APIError,
     APIConnectionError,
     APIResponseError,
     APIUnavailableError,

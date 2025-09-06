@@ -39,7 +39,7 @@ async def fetch_one_video(request: Request,
         return ResponseModel(code=200,
                              router=request.url.path,
                              data=data)
-    except Exception as e:
+    except Exception:
         status_code = 400
         detail = ErrorResponseModel(code=status_code,
                                     router=request.url.path,

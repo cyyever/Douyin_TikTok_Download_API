@@ -1,5 +1,5 @@
 from typing import Any, List
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from crawlers.douyin.web.utils import TokenManager, VerifyFpManager
 

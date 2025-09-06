@@ -1,4 +1,4 @@
-from pywebio.output import popup, put_markdown, put_html, put_text, put_link, put_image
+from pywebio.output import popup, put_markdown, put_html, put_image
 from app.web.views.ViewsUtils import ViewsUtils
 
 t = ViewsUtils().t
