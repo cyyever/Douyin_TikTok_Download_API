@@ -1,7 +1,6 @@
-from fastapi import Body, FastAPI, Query, Request, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Any, Callable, Type, Optional, Dict
-from functools import wraps
+from typing import Any
 import datetime
 
 app = FastAPI()
@@ -11,7 +10,7 @@ app = FastAPI()
 class ResponseModel(BaseModel):
     code: int = 200
     router: str = "Endpoint path"
-    data: Optional[Any] = {}
+    data: Any | None = {}
 
 
 # 定义错误响应模型
@@ -28,7 +27,7 @@ class ErrorResponseModel(BaseModel):
 class HybridResponseModel(BaseModel):
     code: int = 200
     router: str = "Hybrid parsing single video endpoint"
-    data: Optional[Any] = {}
+    data: Any | None = {}
 
 
 # iOS_Shortcut响应模型

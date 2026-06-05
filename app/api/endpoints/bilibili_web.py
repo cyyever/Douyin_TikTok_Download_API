@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Query, Request, HTTPException  # 导入FastAPI组件
+from fastapi import APIRouter, Query, Request, HTTPException  # 导入FastAPI组件
 from app.api.models.APIResponseModel import ResponseModel, ErrorResponseModel  # 导入响应模型
 
 from crawlers.bilibili.web.web_crawler import BilibiliWebCrawler  # 导入哔哩哔哩web爬虫
@@ -43,7 +43,7 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取视频流地址
@@ -85,7 +85,7 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户发布视频作品数据
@@ -128,7 +128,7 @@ async def fetch_user_post_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户所有收藏夹信息
@@ -167,7 +167,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定收藏夹内视频数据
@@ -212,7 +212,7 @@ async def fetch_user_collection_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定用户的信息
@@ -251,7 +251,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取综合热门视频信息
@@ -290,7 +290,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定视频的评论
@@ -333,7 +333,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取视频下指定评论的回复
@@ -380,7 +380,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定用户动态
@@ -424,7 +424,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取视频实时弹幕
@@ -462,7 +462,7 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定直播间信息
@@ -501,7 +501,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定直播间视频流
@@ -540,7 +540,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定分区正在直播的主播
@@ -583,7 +583,7 @@ async def fetch_collect_folders(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取所有直播分区列表
@@ -618,7 +618,7 @@ async def fetch_collect_folders(request: Request,):
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 通过bv号获得视频aid号
@@ -656,7 +656,7 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 通过bv号获得视频分p信息
@@ -694,4 +694,4 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())

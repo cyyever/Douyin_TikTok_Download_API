@@ -1,5 +1,5 @@
-from typing import Any, List
-from pydantic import BaseModel, Field
+from typing import Any
+from pydantic import BaseModel
 
 from crawlers.douyin.web.utils import TokenManager, VerifyFpManager
 
@@ -288,9 +288,8 @@ class UserFollower(BaseRequestModel):
 
 # 列表作品
 class URL_List(BaseModel):
-    urls: List[str] = [
+    urls: list[str] = [
         "https://test.example.com/xxxxx/",
         "https://test.example.com/yyyyy/",
-        "https://test.example.com/zzzzz/"
+        "https://test.example.com/zzzzz/",
     ]
-

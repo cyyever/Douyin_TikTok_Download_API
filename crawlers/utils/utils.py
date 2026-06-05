@@ -43,8 +43,8 @@ import importlib_resources
 
 from pydantic import BaseModel
 
-from urllib.parse import quote, urlencode  # URL编码
-from typing import Union, List, Any
+from urllib.parse import urlencode  # URL编码
+from typing import Any
 from pathlib import Path
 
 # 生成一个 16 字节的随机字节串 (Generate a random byte string of 16 bytes)
@@ -59,7 +59,7 @@ random.seed(seed_int)
 
 # 将模型实例转换为字典
 def model_to_query_string(model: BaseModel) -> str:
-    model_dict = model.dict()
+    model_dict = model.model_dump()
     # 使用urlencode进行URL编码
     query_string = urlencode(model_dict)
     return query_string
@@ -104,7 +104,7 @@ def get_timestamp(unit: str = "milli"):
 
 
 def timestamp_2_str(
-        timestamp: Union[str, int, float], format: str = "%Y-%m-%d %H-%M-%S"
+    timestamp: str | int | float, format: str = "%Y-%m-%d %H-%M-%S"
 ) -> str:
     """
     将 UNIX 时间戳转换为格式化字符串 (Convert a UNIX timestamp to a formatted string)
@@ -172,7 +172,7 @@ def split_dict_cookie(cookie_dict: dict) -> str:
     return "; ".join(f"{key}={value}" for key, value in cookie_dict.items())
 
 
-def extract_valid_urls(inputs: Union[str, List[str]]) -> Union[str, List[str], None]:
+def extract_valid_urls(inputs: str | list[str]) -> str | list[str] | None:
     """从输入中提取有效的URL (Extract valid URLs from input)
 
     Args:
@@ -224,7 +224,7 @@ def get_resource_path(filepath: str):
     return importlib_resources.files("f2") / filepath
 
 
-def replaceT(obj: Union[str, Any]) -> Union[str, Any]:
+def replaceT(obj: str | Any) -> str | Any:
     """
     替换文案非法字符 (Replace illegal characters in the text)
 
@@ -281,7 +281,7 @@ def split_filename(text: str, os_limit: dict) -> str:
         return text
 
 
-def ensure_path(path: Union[str, Path]) -> Path:
+def ensure_path(path: str | Path) -> Path:
     """确保路径是一个Path对象 (Ensure the path is a Path object)"""
     return Path(path) if isinstance(path, str) else path
 
@@ -319,7 +319,7 @@ def get_cookie_from_browser(browser_choice: str, domain: str = "") -> dict:
 
 
 def check_invalid_naming(
-        naming: str, allowed_patterns: list, allowed_separators: list
+    naming: str, allowed_patterns: list, allowed_separators: list
 ) -> list:
     """
     检查命名是否符合命名模板 (Check if the naming conforms to the naming template)
@@ -361,9 +361,9 @@ def check_invalid_naming(
 
 
 def merge_config(
-        main_conf: dict = ...,
-        custom_conf: dict = ...,
-        **kwargs,
+    main_conf: dict = ...,
+    custom_conf: dict = ...,
+    **kwargs,
 ):
     """
     合并配置参数，使 CLI 参数优先级高于自定义配置，自定义配置优先级高于主配置，最终生成完整配置参数字典。

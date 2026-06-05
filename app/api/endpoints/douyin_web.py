@@ -1,4 +1,3 @@
-from typing import List
 
 from fastapi import APIRouter, Body, Query, Request, HTTPException  # 导入FastAPI组件
 from app.api.models.APIResponseModel import ResponseModel, ErrorResponseModel  # 导入响应模型
@@ -45,7 +44,7 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户作品集合数据
@@ -94,7 +93,7 @@ async def fetch_user_post_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户喜欢作品数据
@@ -143,7 +142,7 @@ async def fetch_user_like_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户收藏作品数据（用户提供自己的Cookie）
@@ -191,7 +190,7 @@ async def fetch_user_collection_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户合辑作品数据
@@ -239,7 +238,7 @@ async def fetch_user_mix_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户直播流数据
@@ -279,7 +278,7 @@ async def fetch_user_live_videos(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定用户的直播流数据
@@ -320,7 +319,7 @@ async def fetch_user_live_videos_by_room_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取直播间送礼用户排行榜
@@ -365,7 +364,7 @@ async def fetch_live_gift_ranking(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 抖音直播间商品信息
@@ -420,7 +419,7 @@ async def fetch_live_room_product_result(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定用户的信息
@@ -462,7 +461,7 @@ async def handler_user_profile(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取单个视频评论数据
@@ -510,7 +509,7 @@ async def fetch_video_comments(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取指定视频的评论回复数据
@@ -563,7 +562,7 @@ async def fetch_video_comments_reply(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 生成真实msToken
@@ -595,7 +594,7 @@ async def generate_real_msToken(request: Request):
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 生成ttwid
@@ -627,7 +626,7 @@ async def generate_ttwid(request: Request):
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 生成verify_fp
@@ -659,7 +658,7 @@ async def generate_verify_fp(request: Request):
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 生成s_v_web_id
@@ -691,7 +690,7 @@ async def generate_s_v_web_id(request: Request):
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 使用接口地址生成Xbogus参数
@@ -731,7 +730,7 @@ async def generate_x_bogus(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 使用接口地址生成Abogus参数
@@ -773,7 +772,7 @@ async def generate_a_bogus(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取单个用户id
@@ -814,7 +813,7 @@ async def get_sec_user_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表用户id
@@ -822,7 +821,7 @@ async def get_sec_user_id(request: Request,
              response_model=ResponseModel,
              summary="提取列表用户id/Extract list user id")
 async def get_all_sec_user_id(request: Request,
-                              url: List[str] = Body(
+                              url: list[str] = Body(
                                   example=[
                                       "https://www.douyin.com/user/MS4wLjABAAAANXSltcLCzDGmdNFI2Q_QixVTr67NiYzjKOIP5s03CAE?vid=7285950278132616463",
                                       "https://www.douyin.com/user/MS4wLjABAAAAVsneOf144eGDFf8Xp9QNb1VW6ovXnNT5SqJBhJfe8KQBKWKDTWK5Hh-_i9mJzb8C",
@@ -871,7 +870,7 @@ async def get_all_sec_user_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取单个作品id
@@ -911,7 +910,7 @@ async def get_aweme_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表作品id
@@ -919,7 +918,7 @@ async def get_aweme_id(request: Request,
              response_model=ResponseModel,
              summary="提取列表作品id/Extract list video id")
 async def get_all_aweme_id(request: Request,
-                           url: List[str] = Body(
+                           url: list[str] = Body(
                                example=[
                                    "0.53 02/26 I@v.sE Fus:/ 你别太帅了郑润泽# 现场版live # 音乐节 # 郑润泽  https://v.douyin.com/iRNBho6u/ 复制此链接，打开Dou音搜索，直接观看视频!",
                                    "https://v.douyin.com/iRNBho6u/",
@@ -969,7 +968,7 @@ async def get_all_aweme_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表直播间号
@@ -1009,7 +1008,7 @@ async def get_webcast_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表直播间号
@@ -1017,7 +1016,7 @@ async def get_webcast_id(request: Request,
              response_model=ResponseModel,
              summary="提取列表直播间号/Extract list webcast id")
 async def get_all_webcast_id(request: Request,
-                             url: List[str] = Body(
+                             url: list[str] = Body(
                                  example=[
                                      "https://live.douyin.com/775841227732",
                                      "https://live.douyin.com/775841227732?room_id=7318296342189919011&enter_from_merge=web_share_link&enter_method=web_share_link&previous_page=app_code_link",
@@ -1067,4 +1066,4 @@ async def get_all_webcast_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())

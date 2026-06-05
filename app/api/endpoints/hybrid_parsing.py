@@ -1,6 +1,5 @@
-import asyncio
 
-from fastapi import APIRouter, Body, Query, Request, HTTPException  # 导入FastAPI组件
+from fastapi import APIRouter, Query, Request, HTTPException  # 导入FastAPI组件
 
 from app.api.models.APIResponseModel import ResponseModel, ErrorResponseModel  # 导入响应模型
 
@@ -50,4 +49,4 @@ async def hybrid_parsing_single_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())

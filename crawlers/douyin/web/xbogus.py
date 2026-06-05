@@ -233,7 +233,7 @@ class XBogus:
                 ord(garbled_code[idx + 2]),
             )
             idx += 3
-        self.params = "%s&X-Bogus=%s" % (url_path, xb_)
+        self.params = f"{url_path}&X-Bogus={xb_}"
         self.xb = xb_
         return (self.params, self.xb, self.user_agent)
 

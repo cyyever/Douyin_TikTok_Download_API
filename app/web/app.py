@@ -17,7 +17,7 @@ from app.web.views.ViewsUtils import ViewsUtils
 
 # 读取上级再上级目录的配置文件
 config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config.yaml')
-with open(config_path, 'r', encoding='utf-8') as file:
+with open(config_path, encoding='utf-8') as file:
     _config = yaml.safe_load(file)
 
 pywebio_config(theme=_config['Web']['PyWebIO_Theme'],

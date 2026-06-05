@@ -1,4 +1,3 @@
-from typing import List
 
 from fastapi import APIRouter, Query, Body, Request, HTTPException  # 导入FastAPI组件
 
@@ -47,7 +46,7 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的个人信息
@@ -93,7 +92,7 @@ async def fetch_user_profile(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的作品列表
@@ -146,7 +145,7 @@ async def fetch_user_post(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的点赞列表
@@ -202,7 +201,7 @@ async def fetch_user_like(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的收藏列表
@@ -260,7 +259,7 @@ async def fetch_user_collect(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的播放列表
@@ -309,7 +308,7 @@ async def fetch_user_play_list(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的合辑列表
@@ -358,7 +357,7 @@ async def fetch_user_mix(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取作品的评论列表
@@ -410,7 +409,7 @@ async def fetch_post_comment(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取作品的评论回复列表
@@ -467,7 +466,7 @@ async def fetch_post_comment_reply(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的粉丝列表
@@ -520,7 +519,7 @@ async def fetch_user_fans(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户的关注列表
@@ -573,7 +572,7 @@ async def fetch_user_follow(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 """-------------------------------------------------------utils接口列表-------------------------------------------------------"""
@@ -608,7 +607,7 @@ async def generate_real_msToken(request: Request):
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 生成ttwid
@@ -648,7 +647,7 @@ async def generate_ttwid(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 生成xbogus
@@ -696,7 +695,7 @@ async def generate_xbogus(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表用户id
@@ -738,7 +737,7 @@ async def get_sec_user_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表用户id
@@ -746,7 +745,7 @@ async def get_sec_user_id(request: Request,
              response_model=ResponseModel,
              summary="提取列表用户id/Extract list user id")
 async def get_all_sec_user_id(request: Request,
-                              url: List[str] = Body(
+                              url: list[str] = Body(
                                   example=["https://www.tiktok.com/@tiktok"],
                                   description="用户主页链接/User homepage link")):
     """
@@ -780,7 +779,7 @@ async def get_all_sec_user_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取单个作品id
@@ -822,7 +821,7 @@ async def get_aweme_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 提取列表作品id
@@ -830,7 +829,7 @@ async def get_aweme_id(request: Request,
              response_model=ResponseModel,
              summary="提取列表作品id/Extract list video id")
 async def get_all_aweme_id(request: Request,
-                           url: List[str] = Body(
+                           url: list[str] = Body(
                                example=["https://www.tiktok.com/@owlcitymusic/video/7218694761253735723"],
                                description="作品链接/Video link")):
     """
@@ -864,7 +863,7 @@ async def get_all_aweme_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取用户unique_id
@@ -906,7 +905,7 @@ async def get_unique_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
 
 
 # 获取列表unique_id列表
@@ -914,7 +913,7 @@ async def get_unique_id(request: Request,
              response_model=ResponseModel,
              summary="获取列表unique_id/Get list unique_id")
 async def get_all_unique_id(request: Request,
-                            url: List[str] = Body(
+                            url: list[str] = Body(
                                 example=["https://www.tiktok.com/@tiktok"],
                                 description="用户主页链接/User homepage link")):
     """
@@ -948,4 +947,4 @@ async def get_all_unique_id(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())

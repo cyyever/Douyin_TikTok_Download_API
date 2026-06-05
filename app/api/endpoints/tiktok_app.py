@@ -45,5 +45,5 @@ async def fetch_one_video(request: Request,
                                     router=request.url.path,
                                     params=dict(request.query_params),
                                     )
-        raise HTTPException(status_code=status_code, detail=detail.dict())
+        raise HTTPException(status_code=status_code, detail=detail.model_dump())
     

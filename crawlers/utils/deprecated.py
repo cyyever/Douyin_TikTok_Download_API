@@ -9,7 +9,7 @@ def deprecated(message):
             warnings.warn(
                 f"{func.__name__} is deprecated: {message}",
                 DeprecationWarning,
-                stacklevel=2
+                stacklevel=2,
             )
             return await func(*args, **kwargs)
 

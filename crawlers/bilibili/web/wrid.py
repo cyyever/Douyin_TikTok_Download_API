@@ -1,7 +1,9 @@
 import urllib.parse
 
+
 def srotl(t, e):
     return (t << e) | (t >> (32 - e))
+
 
 def tendian(t):
     if isinstance(t, int):
@@ -9,6 +11,7 @@ def tendian(t):
     for e in range(len(t)):
         t[e] = tendian(t[e])
     return t
+
 
 # 没问题
 def tbytes_to_words(t):
@@ -21,15 +24,18 @@ def tbytes_to_words(t):
         r += 8
     return e
 
+
 def jbinstring_to_bytes(t):
     e = []
     for n in range(len(t)):
         e.append(ord(t[n]) & 255)
     return e
 
+
 # 没问题
 def estring_to_bytes(t):
     return jbinstring_to_bytes(urllib.parse.unquote(urllib.parse.quote(t)))
+
 
 def _ff(t, e, n, r, o, i, a):
     # 计算中间值 c
@@ -41,6 +47,7 @@ def _ff(t, e, n, r, o, i, a):
     # 返回结果
     return (c + e) & 0xFFFFFFFF
 
+
 def _gg(t, e, n, r, o, i, a):
     # 计算中间值 c
     c = t + ((e & r) | (n & ~r)) + (o & 0xFFFFFFFF) + a
@@ -50,6 +57,7 @@ def _gg(t, e, n, r, o, i, a):
     c = (c << i | c >> (32 - i)) & 0xFFFFFFFF
     # 返回结果
     return (c + e) & 0xFFFFFFFF
+
 
 def _hh(t, e, n, r, o, i, a):
     # 计算中间值 c
@@ -61,6 +69,7 @@ def _hh(t, e, n, r, o, i, a):
     # 返回结果
     return (c + e) & 0xFFFFFFFF
 
+
 def _ii(t, e, n, r, o, i, a):
     # 计算中间值 c
     c = t + (n ^ (e | ~r)) + (o & 0xFFFFFFFF) + a
@@ -70,6 +79,7 @@ def _ii(t, e, n, r, o, i, a):
     c = (c << i | c >> (32 - i)) & 0xFFFFFFFF
     # 返回结果
     return (c + e) & 0xFFFFFFFF
+
 
 def o(i, a):
     if isinstance(i, str):
@@ -83,7 +93,9 @@ def o(i, a):
     s, l, f, p = 1732584193, -271733879, -1732584194, 271733878
 
     for d in range(len(c)):
-        c[d] = (16711935 & (c[d] << 8 | c[d] >> 24)) | (4278255360 & (c[d] << 24 | c[d] >> 8))
+        c[d] = (16711935 & (c[d] << 8 | c[d] >> 24)) | (
+            4278255360 & (c[d] << 24 | c[d] >> 8)
+        )
 
     # 确保列表 c 的长度足够大
     while len(c) <= (14 + ((u + 64 >> 9) << 4)):
@@ -113,7 +125,15 @@ def o(i, a):
         s = h(s, l, f, p, c[d + 12], 7, 1804603682)
         p = h(p, s, l, f, c[d + 13], 12, -40341101)
         f = h(f, p, s, l, c[d + 14], 17, -1502002290)
-        s = v(s, l := h(l, f, p, s, c[d + 15], 22, 1236535329), f, p, c[d + 1], 5, -165796510)
+        s = v(
+            s,
+            l := h(l, f, p, s, c[d + 15], 22, 1236535329),
+            f,
+            p,
+            c[d + 1],
+            5,
+            -165796510,
+        )
         p = v(p, s, l, f, c[d + 6], 9, -1069501632)
         f = v(f, p, s, l, c[d + 11], 14, 643717713)
         l = v(l, f, p, s, c[d + 0], 20, -373897302)
@@ -128,7 +148,15 @@ def o(i, a):
         s = v(s, l, f, p, c[d + 13], 5, -1444681467)
         p = v(p, s, l, f, c[d + 2], 9, -51403784)
         f = v(f, p, s, l, c[d + 7], 14, 1735328473)
-        s = y(s, l := v(l, f, p, s, c[d + 12], 20, -1926607734), f, p, c[d + 5], 4, -378558)
+        s = y(
+            s,
+            l := v(l, f, p, s, c[d + 12], 20, -1926607734),
+            f,
+            p,
+            c[d + 5],
+            4,
+            -378558,
+        )
         p = y(p, s, l, f, c[d + 8], 11, -2022574463)
         f = y(f, p, s, l, c[d + 11], 16, 1839030562)
         l = y(l, f, p, s, c[d + 14], 23, -35309556)
@@ -143,7 +171,15 @@ def o(i, a):
         s = y(s, l, f, p, c[d + 9], 4, -640364487)
         p = y(p, s, l, f, c[d + 12], 11, -421815835)
         f = y(f, p, s, l, c[d + 15], 16, 530742520)
-        s = m(s, l := y(l, f, p, s, c[d + 2], 23, -995338651), f, p, c[d + 0], 6, -198630844)
+        s = m(
+            s,
+            l := y(l, f, p, s, c[d + 2], 23, -995338651),
+            f,
+            p,
+            c[d + 0],
+            6,
+            -198630844,
+        )
         p = m(p, s, l, f, c[d + 7], 10, 1126891415)
         f = m(f, p, s, l, c[d + 14], 15, -1416354905)
         l = m(l, f, p, s, c[d + 5], 21, -57434055)
@@ -167,18 +203,21 @@ def o(i, a):
 
     return tendian([s, l, f, p])
 
+
 def twords_to_bytes(t):
     e = []
     for n in range(0, 32 * len(t), 8):
         e.append((t[n >> 5] >> (24 - n % 32)) & 255)
     return e
 
+
 def tbytes_to_hex(t):
     e = []
     for n in range(len(t)):
         e.append(hex(t[n] >> 4)[2:])
         e.append(hex(t[n] & 15)[2:])
-    return ''.join(e)
+    return "".join(e)
+
 
 def get_wrid(e):
     n = None
